@@ -4,7 +4,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import com.android.sample.app.theme.ComposeTheme
+import com.android.sample.app.ui.theme.ComposeTheme
 
 @Composable
 fun DetailTitleText(resourceId: Int) {

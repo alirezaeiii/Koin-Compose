@@ -20,7 +20,7 @@ import com.android.sample.app.R
 import com.android.sample.app.base.BaseFragment
 import com.android.sample.app.base.BaseViewModel
 import com.android.sample.app.domain.Section
-import com.android.sample.app.theme.ComposeTheme
+import com.android.sample.app.ui.theme.ComposeTheme
 import com.android.sample.app.ui.common.DetailDescriptionText
 import com.android.sample.app.ui.common.DetailTitleText
 import com.android.sample.app.ui.common.composeView

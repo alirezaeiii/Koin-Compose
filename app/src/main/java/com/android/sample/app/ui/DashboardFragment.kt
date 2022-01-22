@@ -21,7 +21,7 @@ import com.android.sample.app.R
 import com.android.sample.app.base.BaseFragment
 import com.android.sample.app.base.BaseViewModel
 import com.android.sample.app.domain.Dashboard
-import com.android.sample.app.theme.ComposeTheme
+import com.android.sample.app.ui.theme.ComposeTheme
 import com.android.sample.app.ui.common.composeView
 import com.android.sample.app.viewmodel.DashboardViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
