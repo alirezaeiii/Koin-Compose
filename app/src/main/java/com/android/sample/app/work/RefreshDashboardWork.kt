@@ -20,7 +20,7 @@ class RefreshDashboardWork(appContext: Context, params: WorkerParameters) :
     override suspend fun doWork(): Result {
         val repository: DashboardRepository by inject()
         return try {
-            repository.refresh(null)
+            repository.refresh()
             Result.success()
         } catch (err: Exception) {
             Result.failure()

@@ -49,7 +49,7 @@ abstract class BaseRepository<T>(
         }
     }.flowOn(dispatcher)
 
-    suspend fun refresh(url: String?) {
+    suspend fun refresh(url: String? = null) {
         saveFetchResult(fetch(url))
     }
 }
