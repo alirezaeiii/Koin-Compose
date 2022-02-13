@@ -11,10 +11,10 @@ import org.koin.dsl.module
 val repositoryModule = module {
 
     single<BaseRepository<Dashboard>>(named("dashboard")) {
-        DashboardRepository(get(), get(), get(), get(named("io")))
+        DashboardRepository(get(), get(), get(), get(named("ioDispatcher")))
     }
 
     single<BaseRepository<Section>>(named("section")) {
-        SectionRepository(get(), get(), get(), get(named("io")))
+        SectionRepository(get(), get(), get(), get(named("ioDispatcher")))
     }
 }

@@ -6,13 +6,14 @@ import com.android.sample.app.util.ViewState
 import com.android.sample.app.util.isNetworkAvailable
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import timber.log.Timber
 
 abstract class BaseRepository<T>(
     private val context: Context,
-    private val dispatcher: CoroutineDispatcher
+    private val ioDispatcher: CoroutineDispatcher
 ) {
     protected abstract suspend fun query(id: String?): T?
 
@@ -25,14 +26,10 @@ abstract class BaseRepository<T>(
         query(id)?.let {
             // ****** STEP 1: VIEW CACHE ******
             emit(ViewState.Success(it))
-            try {
-                // ****** STEP 2: MAKE NETWORK CALL, SAVE RESULT TO CACHE ******
-                refresh(url)
-                // ****** STEP 3: VIEW CACHE ******
-                emit(ViewState.Success(query(id)))
-            } catch (t: Throwable) {
-                Timber.e(t)
-            }
+            // ****** STEP 2: MAKE NETWORK CALL, SAVE RESULT TO CACHE ******
+            refresh(url)
+            // ****** STEP 3: VIEW CACHE ******
+            emit(ViewState.Success(query(id)))
         } ?: run {
             if (context.isNetworkAvailable()) {
                 try {
@@ -47,7 +44,8 @@ abstract class BaseRepository<T>(
                 emit(ViewState.Error(context.getString(R.string.failed_network_msg)))
             }
         }
-    }.flowOn(dispatcher)
+    }.flowOn(ioDispatcher)
+        .catch { Timber.e(it) }
 
     suspend fun refresh(url: String? = null) {
         saveFetchResult(fetch(url))

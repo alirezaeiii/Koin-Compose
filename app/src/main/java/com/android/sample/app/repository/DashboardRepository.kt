@@ -13,8 +13,8 @@ class DashboardRepository(
     private val dao: DashboardDao,
     private val api: ApiService,
     context: Context,
-    dispatcher: CoroutineDispatcher
-) : BaseRepository<Dashboard>(context, dispatcher) {
+    ioDispatcher: CoroutineDispatcher
+) : BaseRepository<Dashboard>(context, ioDispatcher) {
 
     override suspend fun query(id: String?): Dashboard? =
         dao.getDashboard()?.asDomainModel()

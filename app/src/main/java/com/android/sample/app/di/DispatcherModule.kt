@@ -6,6 +6,6 @@ import org.koin.dsl.module
 
 val dispatcherModule = module {
 
-    single(named("io")) { Dispatchers.IO }
+    single(named("ioDispatcher")) { Dispatchers.IO }
 }
 

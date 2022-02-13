@@ -13,8 +13,8 @@ class SectionRepository(
     private val dao: SectionDao,
     private val api: ApiService,
     context: Context,
-    dispatcher: CoroutineDispatcher
-) : BaseRepository<Section>(context, dispatcher) {
+    ioDispatcher: CoroutineDispatcher
+) : BaseRepository<Section>(context, ioDispatcher) {
 
     override suspend fun query(id: String?): Section? =
         dao.getSection(id!!)?.asDomainModel()
